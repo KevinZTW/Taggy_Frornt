@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "../css/AddArticle.css";
+
 const { addtofirestore } = require("../firebase.js");
 export default function AddArticle() {
   const [reqUrl, setReqUrl] = useState("");
@@ -28,38 +30,32 @@ export default function AddArticle() {
       });
   }
   return (
-    <div className="AddArticle">
-      <label htmlFor="input">Input url to add article!</label>
+    <div className="addArticle">
       <input
         type="text"
         name="input"
+        className="input"
         value={reqUrl}
         onChange={(e) => setReqUrl(e.currentTarget.value)}
       />
       <button
         type="submit"
+        className="add"
         onClick={(e) => {
           postData("http://localhost:2000/route/article/import", {
             url: reqUrl,
           });
         }}
       >
-        Add New Article！
+        儲存文章
       </button>
-      <button
-        type="submit"
-        onClick={(e) => {
-          addtofirestore();
-        }}
-      >
-        Add to firesotre
-      </button>
+
       <br />
-      <a href="http://localhost:2000/route/article/before">Before</a>
+      {/* <a href="http://localhost:2000/route/article/before">Before</a>
       <br />
       <a href="http://localhost:2000/route/article/after">after</a>
       <br />
-      <a href="http://localhost:2000/route/article/MD">Mark Down</a>
+      <a href="http://localhost:2000/route/article/MD">Mark Down</a> */}
     </div>
   );
 }
