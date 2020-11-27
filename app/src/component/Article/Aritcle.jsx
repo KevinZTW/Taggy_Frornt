@@ -1,7 +1,7 @@
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import MD from "./MD";
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { db } from "../../firebase.js";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import "../../css/Article.css";
