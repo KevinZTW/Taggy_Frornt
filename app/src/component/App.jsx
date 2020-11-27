@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Article from "./Article/Aritcle";
 import AddArticle from "./AddArticle";
 import Signup from "./Member/Signup";
+import Signin from "./Member/Signin";
 import Main from "./Main";
 import FolderTab from "./FolderTab";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
@@ -26,6 +27,7 @@ function App() {
           </Route>
           <Route path="/article" component={Article}></Route>
           <Route path="/signup" component={Signup}></Route>
+          <Route path="/signin" component={Signin}></Route>
         </Switch>
       </div>
     </Router>

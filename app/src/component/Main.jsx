@@ -12,7 +12,6 @@ export default function Main() {
         .get()
         .then(function (querySnapshot) {
           querySnapshot.forEach(function (doc) {
-            console.log(doc.data());
             // doc.data() is never undefined for query doc snapshots
             list.push({
               title: doc.data().title,

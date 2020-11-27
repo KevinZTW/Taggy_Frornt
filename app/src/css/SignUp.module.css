@@ -67,3 +67,7 @@
 .login > a:link {
   color: white;
 }
+.login > a:link,
+a:visited {
+  color: white;
+}

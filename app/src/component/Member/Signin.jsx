@@ -1,41 +1,44 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import "../../css/App.css";
 import styles from "../../css/SignUp.module.css";
 import { Link } from "react-router-dom";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { uiConfig, auth } from "../../firebase.js";
-
 export default function Signup() {
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
-  function firebaseSignUp(email, password) {
+  let history = useHistory();
+  function firebaseSignIn(email, password) {
     auth
-      .createUserWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(email, password)
       .then((user) => {
+        console.log("you click sign in and successfully");
+        history.push("/board");
         // Signed in
-        // ...
       })
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        // ..
+        console.log(errorCode);
+        console.log(errorMessage);
       });
   }
   return (
     <div className={styles.wrapper}>
       <div className="block" className={styles.block}>
-        <h2 className={styles.title}>Sign Up</h2>
+        <h2 className={styles.title}>Sign In</h2>
         <form
           className={styles.form}
           onSubmit={(e) => {
             e.preventDefault();
-            firebaseSignUp(email, password);
+            firebaseSignIn(email, password);
           }}
         >
-          <div className={styles.inputbox}>
+          {/* <div className={styles.inputbox}>
             <label htmlFor="username">User Name</label>
             <input type="text" name="username" />
-          </div>
+          </div> */}
           <div className={styles.inputbox}>
             <label htmlFor="email">Email</label>
             <input
@@ -58,13 +61,8 @@ export default function Signup() {
               }}
             />
           </div>
-          <button>Sign Up</button>
+          <button>Sign In</button>
         </form>
-        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
-        <div className={styles.login}>
-          <span>Already have an account? </span>
-          <Link to={"/Signin"}>Sign in</Link>
-        </div>
       </div>
     </div>
   );

@@ -35,3 +35,37 @@ export const addtofirestore = function () {
 
 export const auth = app.auth();
 export default app;
+
+//============================== Auth ============================================================
+export const uiConfig = {
+  // Popup signin flow rather than redirect flow.
+  signInFlow: "popup",
+  // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
+  signInSuccessUrl: "/signedIn",
+  // We will display Google and Facebook as auth providers.
+  signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
+};
+export function checkFirebaseUserStatus() {
+  var user = firebase.auth().currentUser;
+
+  if (user) {
+    console.log(user);
+    console.log(user.email);
+    console.log(user.uid);
+  } else {
+    history.push();
+  }
+}
+
+export function firebaseAuthStateChanged() {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
+}

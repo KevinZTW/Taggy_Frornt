@@ -2,12 +2,12 @@ import { useLocation } from "react-router-dom";
 import MD from "./MD";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { db } from "../../firebase.js";
+import { db, checkFirebaseUserStatus } from "../../firebase.js";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import "../../css/Article.css";
+
 export default function Article() {
   let [article, setArticle] = useState({});
-  console.log("article is ", article);
   const location = useLocation();
   let search = location.search;
   let params = new URLSearchParams(search);
@@ -23,12 +23,11 @@ export default function Article() {
             title: doc.data().title,
             content: doc.data().content,
           });
-          console.log(doc.data());
         });
     }
     getArticles();
   }, []);
-
+  checkFirebaseUserStatus();
   return (
     <div>
       <div className="head">
